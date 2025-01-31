@@ -71,8 +71,6 @@ void gpio_irq_handler(uint gpio, uint32_t events){
             last_time = current_time;
 
             }
-    }
-
 }
 
 // Função principal
