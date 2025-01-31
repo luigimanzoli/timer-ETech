@@ -44,10 +44,6 @@ pico_set_program_version(timer "0.1")
 pico_enable_stdio_uart(timer 1)
 pico_enable_stdio_usb(timer 1)
 
-pico_generate_pio_header(timer ${CMAKE_CURRENT_LIST_DIR}/timer.pio)
-
-target_sources(timer PRIVATE timer.c)
-
 # Add the standard library to the build
 target_link_libraries(timer PRIVATE
         pico_stdlib
