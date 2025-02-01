@@ -19,10 +19,6 @@
 #define GLED_PIN 11
 #define BLED_PIN 12
 
-// Definição dos botões
-#define BTNA_PIN 5
-#define BTNB_PIN 6
-
 int contador = 0;
 static volatile uint32_t last_time = 0; 
 
@@ -38,14 +34,6 @@ void init_all() {
     gpio_init(BLED_PIN);
     gpio_set_dir(BLED_PIN, GPIO_OUT);
     gpio_put(BLED_PIN, 0);
-
-    gpio_init(BTNA_PIN);
-    gpio_set_dir(BTNA_PIN, GPIO_IN);
-    gpio_pull_up(BTNA_PIN);
-
-    gpio_init(BTNB_PIN);
-    gpio_set_dir(BTNB_PIN, GPIO_IN);
-    gpio_pull_up(BTNB_PIN);
 }
 
 void get_led(bool R, bool G, bool B) {
@@ -81,10 +69,6 @@ int main() {
     inicializar_clock();
 
     printf("Sistema inicializado. Aguardando entrada...\n");
-
-    // Configuração dos botões como interrupções
-    gpio_set_irq_enabled_with_callback(BTNA_PIN, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
-    gpio_set_irq_enabled_with_callback(BTNB_PIN, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
 
     // Rotina inicial do programa para teste
     gpio_put(RLED_PIN, 1);

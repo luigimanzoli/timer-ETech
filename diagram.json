@@ -11,13 +11,6 @@
       "attrs": { "builder": "pico-sdk" }
     },
     {
-      "type": "wokwi-pushbutton",
-      "id": "btn1",
-      "top": -61,
-      "left": 115.2,
-      "attrs": { "color": "grey", "bounce": "0" }
-    },
-    {
       "type": "wokwi-resistor",
       "id": "r1",
       "top": 138.35,
@@ -45,8 +38,6 @@
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "btn1:1.r", "pico:GP5", "gray", [ "v0", "h125", "v115.2" ] ],
-    [ "btn1:2.r", "pico:GND.2", "black", [ "h115.4", "v105.8" ] ],
     [ "r1:2", "pico:GP12", "blue", [ "v0", "h46.8", "v9.6" ] ],
     [ "r2:2", "pico:GP11", "green", [ "v0", "h46.8", "v-9.6" ] ],
     [ "r3:2", "pico:GP13", "red", [ "v0" ] ],
