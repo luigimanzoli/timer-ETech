@@ -8,19 +8,14 @@
 #include "pico/bootrom.h"
 #include "hardware/pwm.h"
 
-//número de LEDs
-#define NUM_PIXELS 25
-
-//pino de saída
-#define OUT_PIN 7
-
 // Definição dos LEDs RGB
 #define RLED_PIN 13
 #define GLED_PIN 11
 #define BLED_PIN 12
 
+absolute_time_t turn_off_time;  // Armazena o tempo em que o LED deve ser desligado
+
 int contador = 0;
-static volatile uint32_t last_time = 0; 
 
 void init_all() {
     gpio_init(RLED_PIN);
@@ -52,13 +47,18 @@ void inicializar_clock() {
     }
 }
 
-void gpio_irq_handler(uint gpio, uint32_t events){
-
-    uint32_t current_time = to_us_since_boot(get_absolute_time());
-        if (current_time - last_time > 200000){
-            last_time = current_time;
-
-            }
+bool repeating_timer_callback(struct repeating_timer *t){
+    contador++;
+    if (contador == 1){
+        get_led(1,0,0);
+    }
+    else if (contador == 2){
+        get_led(0,1,0);
+    }
+    else if (contador == 3){
+        get_led(0,0,1);
+        contador = 0;
+    }
 }
 
 // Função principal
@@ -70,18 +70,12 @@ int main() {
 
     printf("Sistema inicializado. Aguardando entrada...\n");
 
-    // Rotina inicial do programa para teste
-    gpio_put(RLED_PIN, 1);
-    sleep_ms(300);
-    gpio_put(RLED_PIN, 0);
+    // Configura um temporizador repetitivo que chama a função de callback a cada 3 segundo (3000 ms).
+    struct repeating_timer timer;
+    add_repeating_timer_ms(3000, repeating_timer_callback, NULL, &timer);
 
-    while (true) {
-       for (int i = 0; i < 5; i++){
-            gpio_put(RLED_PIN, 1);
-            sleep_ms(100);
-            gpio_put(RLED_PIN, 0);
-            sleep_ms(100);
-       }
+    while (true){
+        sleep_ms(5000);
     }
 
     return 0;
