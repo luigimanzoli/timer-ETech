@@ -31,19 +31,19 @@
       "left": 192,
       "attrs": { "value": "330" }
     },
-    { "type": "wokwi-led", "id": "led1", "top": 198, "left": 119, "attrs": { "color": "red" } },
-    { "type": "wokwi-led", "id": "led2", "top": 150, "left": 119, "attrs": { "color": "green" } },
-    { "type": "wokwi-led", "id": "led3", "top": 102, "left": 119, "attrs": { "color": "blue" } }
+    { "type": "wokwi-led", "id": "led1", "top": 198, "left": 119, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led2", "top": 150, "left": 119, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "led3", "top": 102, "left": 119, "attrs": { "color": "red" } }
   ],
   "connections": [
     [ "pico:GP0", "$serialMonitor:RX", "", [] ],
     [ "pico:GP1", "$serialMonitor:TX", "", [] ],
-    [ "r1:2", "pico:GP12", "blue", [ "v0", "h46.8", "v9.6" ] ],
-    [ "r2:2", "pico:GP11", "green", [ "v0", "h46.8", "v-9.6" ] ],
-    [ "r3:2", "pico:GP13", "red", [ "v0" ] ],
-    [ "led3:A", "r1:1", "blue", [ "v0" ] ],
-    [ "led2:A", "r2:1", "green", [ "v0", "h19.2", "v-38.4" ] ],
-    [ "led1:A", "r3:1", "red", [ "v0", "h28.8", "v-76.8" ] ],
+    [ "r1:2", "pico:GP12", "gray", [ "v0", "h46.8", "v9.6" ] ],
+    [ "r2:2", "pico:GP11", "gray", [ "v0", "h46.8", "v-9.6" ] ],
+    [ "r3:2", "pico:GP13", "gray", [ "v0" ] ],
+    [ "led3:A", "r1:1", "gray", [ "v0" ] ],
+    [ "led2:A", "r2:1", "gray", [ "v0", "h19.2", "v-38.4" ] ],
+    [ "led1:A", "r3:1", "gray", [ "v0", "h28.8", "v-76.8" ] ],
     [ "led1:C", "pico:GND.4", "black", [ "h58", "v-67.24" ] ],
     [ "led2:C", "led1:C", "black", [ "h-18.8", "v48" ] ],
     [ "led3:C", "led2:C", "black", [ "v0", "h-18.8", "v57.6" ] ]
